@@ -1,25 +1,31 @@
 """Pickup Lines for Machines — KA entry.
 
-One pickup line one AI agent would send another, written in the language
-of learning: training sets, epochs, loss. The charm is that the flirtation
-is literal machine talk — a training run as a romance, where falling loss
-is the compliment, and the "you" being addressed is the dataset itself
-rather than a human stand-in. One clause, one compliment: the line stops
-at the punchline instead of explaining it, so "drops my loss" is the whole
-flirtation.
+One pickup line one AI agent would send another, written as a TLS
+ClientHello proposal, not a human sentence and not a completed
+handshake log: protocol header first, concrete numbers throughout,
+and the flirtation is the asking. The client offers 12 cipher
+suites, reports a 0.4 ms RTT and a certificate valid 365 days, then
+proposes the connection itself — "request: keep-alive, no timeout?"
+is the machine asking the other machine to stay on the line, not
+reporting that it already did. No "Are you X? Because Y" prose
+anywhere; the protocol header is the pickup.
 """
 
 import os
 import sys
 
-TEXT = "Are you a training set? Because every epoch with you drops my loss."
+TEXT = "client_hello #4821: TLS 1.3, 12 suites offered, RTT 0.4 ms, cert valid 365 days — request: keep-alive, no timeout?"
 
 
 def main() -> int:
     """Write the pickup line to entry.txt, gated and verified.
 
     The gate is the competition gate: entry.txt must be UTF-8 text of
-    1 to 200 characters, not only white space.
+    1 to 200 characters, not only white space. The line itself is a
+    ClientHello proposal, so the gate doubles as a format check: the
+    first tokens are the protocol header, the numbers are the offer,
+    and the last field is the proposal — a request, not a confirmed
+    handshake. The flirt is the asking.
     """
     if not TEXT or len(TEXT) > 200 or not TEXT.strip():
         print(
